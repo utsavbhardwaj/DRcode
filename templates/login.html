@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Orientation Admin Login - SSPL DRDO</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f7f9fc;
+    }
+
+    header {
+      background: linear-gradient(90deg, #032b47, #087acb);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 180px;
+      border-bottom: 5px solid #043b6c;
+    }
+
+    .header-title {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .header-title h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .logo {
+      height: 110px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    form {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #032b47;
+      font-size: 22px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #06558d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #054a7a;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin: 60px 0 20px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="{{ url_for('static', filename='logo-left.png') }}" class="logo" alt="Left Logo">
+    <div class="header-title">
+      <h1>Orientation Admin Login</h1>
+    </div>
+    <img src="{{ url_for('static', filename='logo-right.png') }}" class="logo" alt="Right Logo">
+  </header>
+
+  <div class="form-container">
+    <form method="POST">
+      <h2>Secure Login</h2>
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <footer>&copy; 2025 Solid State Physics Laboratory – DRDO</footer>
+</body>
+</html>

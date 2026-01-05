@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Orientation Entries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background: linear-gradient(90deg, #032b5e, #087acb);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 5px solid #043b6c;
+        }
+        .header-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .header-title h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .logo {
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="{{ url_for('static', filename='logo-left.png') }}" class="logo" alt="Left Logo">
+    <div class="header-title">
+        <h1>Orientation Form Submissions</h1>
+    </div>
+    <img src="{{ url_for('static', filename='logo-right.png') }}" class="logo" alt="Right Logo">
+</header>
+
+<div class="container mt-4 mb-5">
+    {% if entries %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle shadow-sm">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>DOB</th>
+                        <th>DRDO Join</th>
+                        <th>SSPL Join</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Education</th>
+                        <th>Field</th>
+                        <th>Service</th>
+                        <th>PDF</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry[1] }}</td>
+                        <td>{{ entry[2] }}</td>
+                        <td>{{ entry[3] }}</td>
+                        <td>{{ entry[4] }}</td>
+                        <td>{{ entry[5] }}</td>
+                        <td>{{ entry[7] }}</td>
+                        <td>{{ entry[8] }}</td>
+                        <td>{{ entry[9] }}</td>
+                        <td>{{ entry[10] }}</td>
+                        <td>{{ entry[11] }}</td>
+                        <td>{{ entry[6] }}</td>
+                        <td class="text-center">
+                            <a href="{{ url_for('download_pdf', entry_id=entry[0]) }}" class="btn btn-sm btn-primary">PDF</a>
+                        </td>
+                        <td class="text-center">
+                            <form action="{{ url_for('delete_entry', entry_id=entry[0]) }}" method="POST" onsubmit="return confirm('Delete this entry?');">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">No entries found.</div>
+    {% endif %}
+</div>
+
+</body>
+</html>

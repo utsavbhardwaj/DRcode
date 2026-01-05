@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orientation Form - SSPL DRDO</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #eef2f7;
+    }
+
+    header {
+      background: linear-gradient(90deg, #032b5e, #087acb);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: auto;
+      border-bottom: 5px solid #043b6c;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      height: 110px;
+    }
+
+    .header-title {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .header-title h1 {
+      font-size: 30px;
+      margin: 5px 0;
+    }
+
+    .header-title h2 {
+      font-size: 24px;
+      color: #ffe68b;
+      margin-top: 5px;
+    }
+
+    form {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 850px;
+      margin: 40px auto;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #043b6c;
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      margin-top: 40px;
+      font-size: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      color: #032b5e;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      background: #f9f9f9;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .service-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .service-row select,
+    .service-row input[type="date"],
+    .service-row input[type="text"] {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .add-service-btn {
+      margin-top: 15px;
+      background-color: #f0a500;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-service-btn:hover {
+      background-color: #d48800;
+    }
+
+    button[type="submit"] {
+      margin-top: 30px;
+      padding: 14px;
+      background-color: #06558d;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #043b6c;
+    }
+
+    footer {
+      text-align: center;
+      color: #888;
+      margin: 40px 0 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="{{ url_for('static', filename='logo-left.png') }}" class="logo" alt="Logo Left">
+    <div class="header-title">
+      <h1>Solid State Physics Laboratory - DRDO</h1>
+      <h2>Aagantuk Disha Darshan (Orientation Registration)</h2>
+    </div>
+    <img src="{{ url_for('static', filename='logo-right.png') }}" class="logo" alt="Logo Right">
+  </header>
+
+  <form method="POST" action="/form" id="orientationForm">
+    <h2>Orientation Registration Form</h2>
+
+    <!-- Section 1 -->
+    <h3>Personal Information</h3>
+    <label>Name:</label>
+    <input type="text" name="name" required>
+
+    <label>Designation:</label>
+    <select name="designation" required>
+      <option value="">-- Select --</option>
+      <option>Scientist A</option>
+      <option>Scientist B</option>
+      <option>Scientist C</option>
+      <option>Scientist D</option>
+      <option>Scientist E</option>
+      <option>Scientist F</option>
+      <option>Scientist G</option>
+      <option>Scientist H</option>
+    </select>
+
+    <label>Date of Birth:</label>
+    <input type="date" name="dob" required>
+
+    <!-- Section 2 -->
+    <h3>Professional Details</h3>
+    <label>DRDO Joining Date:</label>
+    <input type="date" name="drdo_joining">
+
+    <label>SSPL Joining Date:</label>
+    <input type="date" name="sspl_joining">
+
+    <label>Service Details:</label>
+    <div id="service-container">
+      <div class="service-row">
+        <select name="service_type">
+          <option value="">-- Type --</option>
+          <option>Training</option>
+          <option>Posting</option>
+          <option>Project Work</option>
+        </select>
+        <input type="date" name="service_from" placeholder="From">
+        <input type="date" name="service_to" placeholder="To">
+        <input type="text" name="service_description" placeholder="Details">
+      </div>
+    </div>
+    <button type="button" class="add-service-btn" onclick="addService()">+ Add More Service</button>
+
+    <!-- Section 3 -->
+    <h3>Contact & Academic Info</h3>
+    <label>Address:</label>
+    <textarea name="address" rows="3"></textarea>
+
+    <label>Email:</label>
+    <input type="email" name="email">
+
+    <label>Mobile Number:</label>
+    <input type="tel" name="mobile">
+
+    <label>Educational Qualifications:</label>
+    <textarea name="education" rows="3"></textarea>
+
+    <label>Field of Work:</label>
+    <input type="text" name="field">
+
+    <button type="submit">Submit Form</button>
+  </form>
+
+  <footer>&copy; 2025 SSPL DRDO. All Rights Reserved.</footer>
+
+  <script>
+    function addService() {
+      const container = document.getElementById('service-container');
+      const newRow = document.createElement('div');
+      newRow.classList.add('service-row');
+      newRow.innerHTML = `
+        <select name="service_type">
+          <option value="">-- Type --</option>
+          <option>Training</option>
+          <option>Posting</option>
+          <option>Project Work</option>
+        </select>
+        <input type="date" name="service_from" placeholder="From">
+        <input type="date" name="service_to" placeholder="To">
+        <input type="text" name="service_description" placeholder="Details">
+      `;
+      container.appendChild(newRow);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome - Orientation Portal</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f2f6fb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #021228, #087acb);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 180px;
+      border-bottom: 5px solid #043b6c;
+    }
+
+    .logo {
+      height: 120px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .title {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .title h1 {
+      margin: 5px 0;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .title h2 {
+      margin: 4px 0;
+      font-size: 22px;
+      color: #ffd966;
+    }
+
+    .main {
+      flex-grow: 1;
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    .main p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      color: #043b6c;
+    }
+
+    .main a {
+      display: inline-block;
+      margin: 20px;
+      padding: 16px 36px;
+      font-size: 18px;
+      color: white;
+      background-color: #06558d;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .main a:hover {
+      background-color: #043b6c;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background-color: #021228;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="{{ url_for('static', filename='logo-left.png') }}" class="logo" alt="Left Logo" />
+    <div class="title">
+      <h1>Solid State Physics Laboratory - DRDO</h1>
+      <h2>Aagantuk Disha Darshan</h2>
+      <h2>आगंतुक दिशा दर्शन</h2>
+    </div>
+    <img src="{{ url_for('static', filename='logo-right.png') }}" class="logo" alt="Right Logo" />
+  </header>
+
+  <div class="main">
+    <p>Welcome! Please choose an option:</p>
+    <a href="{{ url_for('form') }}">Fill Orientation Form</a>
+    <a href="{{ url_for('login') }}">Admin Login</a>
+  </div>
+
+  <footer>
+    &copy; 2025 Solid State Physics Laboratory – DRDO. All rights reserved.
+  </footer>
+
+</body>
+</html>
