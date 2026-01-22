@@ -168,7 +168,16 @@ def export_csv():
     return send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv',
                      download_name="orientation_entries.csv", as_attachment=True)
 
+@app.route('/sw.js')
+def service_worker():
+    return app.send_static_file('sw.js')
+
 if __name__ == '__main__':
     init_db()
-    app.run(host="0.0.0.0", port=5003, debug=False)
+    # Try using adhoc SSL for LAN PWA support
+    try:
+        app.run(host="0.0.0.0", port=5003, debug=False, ssl_context='adhoc')
+    except Exception as e:
+        print(f"Running without HTTPS (LAN PWA might not work): {e}")
+        app.run(host="0.0.0.0", port=5003, debug=False)
 

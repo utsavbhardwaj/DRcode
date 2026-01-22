@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Orientation Admin Login - SSPL DRDO</title>
@@ -104,7 +105,9 @@
       color: #777;
     }
   </style>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 </head>
+
 <body>
 
   <header>
@@ -119,7 +122,7 @@
     <form method="POST">
       <h2>Secure Login</h2>
       {% if error %}
-        <div class="error">{{ error }}</div>
+      <div class="error">{{ error }}</div>
       {% endif %}
       <input type="text" name="username" placeholder="Username" required />
       <input type="password" name="password" placeholder="Password" required />
@@ -128,5 +131,18 @@
   </div>
 
   <footer>&copy; 2025 Solid State Physics Laboratory – DRDO</footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(function (registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
 </body>
+
 </html>
